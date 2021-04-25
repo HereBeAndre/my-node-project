@@ -6,8 +6,9 @@ const hoganMiddleware = require("hogan-middleware");
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-// Connect views folder
+// Connect views and public folders
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Specify templating engine to handle views
 app.set("view engine", "mustache");
