@@ -16,21 +16,8 @@ app.set("view engine", "mustache");
 // Specify middleware engine to properly handle templating engine
 app.engine("mustache", hoganMiddleware.__express);
 
-app.get("/", (req, res, next) => {
-  res.send("Hello!");
-});
-
-app.get("/json", (req, res, next) => {
-  const data = {
-    greeting: "Hello there!",
-  };
-  res.send(data);
-});
-
-app.get("/home", (req, res, next) => {
-  // 1st argument is the view, 2nd is optional data
-  res.render("home", null);
-});
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
 
 app.listen(PORT, () => {
   console.log("Server running on port %d", PORT);
