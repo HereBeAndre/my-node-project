@@ -16,8 +16,8 @@ app.set("view engine", "mustache");
 // Specify middleware engine to properly handle templating engine
 app.engine("mustache", hoganMiddleware.__express);
 
-const indexRouter = require("./routes/index");
-app.use("/", indexRouter);
+const index = require("./routes/index");
+app.use("/", index);
 
 app.listen(PORT, () => {
   console.log("Server running on port %d", PORT);

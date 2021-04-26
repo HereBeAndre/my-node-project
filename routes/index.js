@@ -1,19 +1,29 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.send("Hello from routes folder!");
+// Handle query parameters
+router.get("/names", (req, res) => {
+  // Within nodeJS, every request has a query object
+  const { name, occupation } = req.query;
+  res.json({
+    name,
+    occupation,
+  });
 });
 
-router.get("/json", (req, res, next) => {
+// Dynamic data examples
+router.get("/:path", (req, res) => {
+  // Within nodeJS, every request has a params object
+  const path = req.params.path;
   res.json({
-    type: "json",
-    data: {
-      id: "123456",
-      date: "04/25/2021",
-      content: "dummy content",
-    },
-    isValid: true,
+    data: path,
+  });
+});
+router.get("/:profile/:username", (req, res) => {
+  const { profile, username } = req.params;
+  res.json({
+    profile,
+    username,
   });
 });
 
@@ -22,15 +32,3 @@ router.get("/home", (req, res, next) => {
 });
 
 module.exports = router;
-
-// app.get("/json", (req, res, next) => {
-//     const data = {
-//       greeting: "Hello there!",
-//     };
-//     res.send(data);
-//   });
-
-//   app.get("/home", (req, res, next) => {
-//     // 1st argument is the view, 2nd is optional data
-//     res.render("home", null);
-//   });
