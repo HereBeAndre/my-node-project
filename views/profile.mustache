@@ -4,5 +4,13 @@
 <body>
     <h3>Name: {{ name }}</h3>
     <h3>Occupation: {{ occupation }}</h3>
+    <div>
+        <form action="/add-profile" method="POST">
+            <input type="text" name="name" placeholder="Enter name"><br />
+            <input type="text" name="username" placeholder="Enter username" /><br />
+            <input type="text" name="occupation" placeholder="Enter occupation"><br />
+            <input type="submit" value="Submit"><br />
+        </form>
+    </div>
 </body>
 </html>

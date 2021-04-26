@@ -17,7 +17,10 @@ app.set("view engine", "mustache");
 app.engine("mustache", hoganMiddleware.__express);
 
 const index = require("./routes/index");
+const register = require("./routes/register");
+
 app.use("/", index);
+app.use("/register", register);
 
 app.listen(PORT, () => {
   console.log("Server running on port %d", PORT);

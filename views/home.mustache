@@ -3,7 +3,15 @@
     <link rel="stylesheet" type="text/css" href="/style/style.css">
 </head>
 <body>
-<h1>Home Page</h1>
+    <h1>Home Page</h1>
     <img src="/images/nodejs.jpg" />
+    <div classname="form">
+        <form action="/register/new-user" method="POST">
+            <input type="text" name="name" placeholder="Enter name" /><br />
+            <input type="number" name="age" placeholder="Enter age" /><br />
+            <input type="text" name="occupation" placeholder="Enter occupation" /><br /> 
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
 </body>
 </html>
