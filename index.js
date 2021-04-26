@@ -16,6 +16,14 @@ app.set("view engine", "mustache");
 // Specify middleware engine to properly handle templating engine
 app.engine("mustache", hoganMiddleware.__express);
 
+// Apply middleware before require and use -
+// All following routes will receive timestamp inside res
+app.use((req, res, next) => {
+  const timestamp = new Date();
+  req.timestamp = timestamp.toString();
+  next(); // Without it function would remain hanging
+});
+
 const index = require("./routes/index");
 const register = require("./routes/register");
 

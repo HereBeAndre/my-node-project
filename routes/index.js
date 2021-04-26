@@ -3,18 +3,21 @@ const router = express.Router();
 
 const profiles = {
   drose: {
+    image: "/images/drose.jpg",
     name: "Derrick Rose",
     role: "Playmaker",
-    jersey: [1, 25],
-    team: ["Chicago Bulls", "New York Knicks", "Minnesota Timberwolves"],
+    jersey: 1,
+    team: "Chicago Bulls",
   },
   kbryant: {
+    image: "/images/kbryant.jpg",
     name: "Kobe Bryant",
     role: "Point Guard",
-    jersey: [8, 24],
+    jersey: 24,
     team: "Los Angeles Lakers",
   },
   skemp: {
+    image: "/images/skemp.jpg",
     name: "Shawn Kemp",
     role: "Power Forward",
     jersey: 40,
@@ -40,6 +43,7 @@ router.get("/names", (req, res) => {
 router.get("/profile/:username", (req, res) => {
   const { username } = req.params;
   const currentProfile = profiles[username];
+  currentProfile.timestamp = req.timestamp;
 
   if (currentProfile == null) {
     res.json({
@@ -49,10 +53,12 @@ router.get("/profile/:username", (req, res) => {
     return;
   }
 
-  res.json({
-    status: "success",
-    profile: currentProfile,
-  });
+  res.render("player", currentProfile);
+
+  // res.json({
+  //   status: "success",
+  //   profile: currentProfile,
+  // });
 });
 
 router.get("/:dynamic1/:dynamic2", (req, res) => {
